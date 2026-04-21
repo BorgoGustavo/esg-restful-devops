@@ -1,0 +1,6 @@
+# Compose default: aponta para o ambiente de STAGING.
+# Para producao use:  docker compose -f docker-compose.prod.yml up -d
+# Este arquivo existe apenas para que "docker compose up" funcione out-of-the-box.
+
+include:
+  - docker-compose.staging.yml

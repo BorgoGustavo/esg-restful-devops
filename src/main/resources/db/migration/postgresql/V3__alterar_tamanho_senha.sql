@@ -1,0 +1,1 @@
+ALTER TABLE tbl_usuarios ALTER COLUMN senha TYPE VARCHAR(100);

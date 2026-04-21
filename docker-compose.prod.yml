@@ -1,0 +1,57 @@
+name: esg-prod
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: esg-db-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-esg}
+      POSTGRES_USER: ${DB_USER:-esg}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-prod-change-me}
+    volumes:
+      - pgdata-prod:/var/lib/postgresql/data
+    networks: [esg-prod]
+    ports:
+      - "${HOST_DB_PORT:-5433}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-esg} -d ${DB_NAME:-esg}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  app:
+    image: ${APP_IMAGE:-esg-restful:prod}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esg-app-prod
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-esg}
+      DB_USER: ${DB_USER:-esg}
+      DB_PASSWORD: ${DB_PASSWORD:-prod-change-me}
+      JWT_SECRET: ${JWT_SECRET:-prod-secret-change-me}
+      APP_PORT: 8080
+    ports:
+      - "${HOST_APP_PORT:-8090}:8080"
+    networks: [esg-prod]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health | grep -q '\"status\":\"UP\"'"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+volumes:
+  pgdata-prod:
+
+networks:
+  esg-prod:
+    driver: bridge
