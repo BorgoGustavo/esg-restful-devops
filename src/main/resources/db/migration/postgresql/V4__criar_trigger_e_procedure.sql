@@ -21,7 +21,7 @@ BEGIN
             SELECT
                 COUNT(*) FILTER (WHERE genero_colaborador = 'Feminino'),
                 COUNT(*) FILTER (WHERE raca_etinia_colaborador = 'Negro'),
-                COUNT(*) FILTER (WHERE possui_deficiencia = 1),
+                COUNT(*) FILTER (WHERE possui_deficiencia = TRUE),
                 COUNT(*) FILTER (WHERE orientacao_sexual_colaborador IS NOT NULL
                                    AND LOWER(orientacao_sexual_colaborador) <> 'heterossexual')
               INTO v_mulheres, v_negros, v_pcds, v_lgbtqia
