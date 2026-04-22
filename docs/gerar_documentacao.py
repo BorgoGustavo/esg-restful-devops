@@ -234,6 +234,8 @@ def gerar():
                      "Execucao verde do workflow CI (build-test + package).")
     pdf.imagem_print("02-cd-green.png",
                      "Execucao verde do workflow CD (docker + deploy staging + deploy prod).")
+    pdf.imagem_print("02b-cd-gate.png",
+                     "Gate de aprovacao manual do environment 'production' antes do deploy.")
     pdf.imagem_print("07-environments.png",
                      "Aba Environments do GitHub: staging sem gate, production com aprovacao manual.")
 
@@ -288,12 +290,15 @@ def gerar():
     ])
     pdf.imagem_print("03-ghcr.png",
                      "Imagem publicada no GitHub Container Registry com tag sha + latest.")
-    pdf.imagem_print("04-staging-ps.png",
-                     "Containers do ambiente STAGING em execucao (app + postgres).")
-    pdf.imagem_print("05-prod-ps.png",
-                     "Containers do ambiente PRODUCAO em execucao (portas 8090/5433).")
+    pdf.imagem_print("04-staging-logs.png",
+                     "Logs do job Deploy STAGING: containers esg-db-staging e esg-app-staging "
+                     "com status 'Healthy/Started' e smoke test do /actuator/health.")
+    pdf.imagem_print("05-prod-logs.png",
+                     "Logs do job Deploy PRODUCAO: stack docker-compose.prod.yml na porta 8090 "
+                     "subindo com healthcheck UP apos aprovacao manual.")
     pdf.imagem_print("06-health.png",
-                     "Endpoint /actuator/health respondendo UP em ambos os ambientes.")
+                     "Saida {\"status\":\"UP\"} do /actuator/health + HTTP 403 do endpoint "
+                     "protegido capturados no smoke test automatico do pipeline.")
 
     # ------ Secao 4: Profiles & Migrations ------------------------------
     pdf.add_page()

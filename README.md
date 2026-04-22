@@ -210,13 +210,14 @@ na documentação técnica (`docs/documentacao.pdf`).
 
 | # | Evidência | Arquivo |
 |---|-----------|---------|
-| 1 | CI verde (build + testes) | `docs/prints/01-ci-green.png` |
-| 2 | CD verde (docker + deploy staging + deploy prod) | `docs/prints/02-cd-green.png` |
-| 3 | Imagem publicada no GHCR | `docs/prints/03-ghcr.png` |
-| 4 | `docker compose ps` staging | `docs/prints/04-staging-ps.png` |
-| 5 | `docker compose ps` produção | `docs/prints/05-prod-ps.png` |
-| 6 | Health endpoint (staging + prod) | `docs/prints/06-health.png` |
-| 7 | Environments/approval gate | `docs/prints/07-environments.png` |
+| 1 | CI verde (build + testes)                                        | `docs/prints/01-ci-green.png`     |
+| 2 | CD verde (docker + deploy staging + deploy prod)                 | `docs/prints/02-cd-green.png`     |
+| 2b| Gate de aprovação manual de `production`                         | `docs/prints/02b-cd-gate.png`     |
+| 3 | Imagem publicada no GHCR                                         | `docs/prints/03-ghcr.png`         |
+| 4 | Logs do job `Deploy STAGING` (containers Healthy/Started)        | `docs/prints/04-staging-logs.png` |
+| 5 | Logs do job `Deploy PRODUCAO` (porta 8090, pós-aprovação)        | `docs/prints/05-prod-logs.png`    |
+| 6 | Smoke test: `/actuator/health` = UP + endpoint protegido 403     | `docs/prints/06-health.png`       |
+| 7 | Environments configurados (staging sem gate, prod com reviewer)  | `docs/prints/07-environments.png` |
 
 ---
 
