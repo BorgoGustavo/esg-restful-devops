@@ -78,7 +78,8 @@ jobs:
         run: |
           cp .env.example .env
           sed -i "s|^JWT_SECRET=.*|JWT_SECRET=staging-${{ github.sha }}|" .env
-          echo "APP_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-$(echo ${{ github.sha }} | cut -c1-7)" >> .env
+          IMAGE_LC=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
+          echo "APP_IMAGE=${{ env.REGISTRY }}/${IMAGE_LC}:sha-$(echo ${{ github.sha }} | cut -c1-7)" >> .env
 
       - name: Subir stack STAGING
         run: docker compose -f docker-compose.staging.yml --env-file .env up -d
@@ -141,7 +142,8 @@ jobs:
           sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=${{ secrets.PROD_DB_PASSWORD || 'prod-db-change-me' }}|" .env.prod
           sed -i "s|^HOST_APP_PORT=.*|HOST_APP_PORT=8090|" .env.prod
           sed -i "s|^HOST_DB_PORT=.*|HOST_DB_PORT=5433|" .env.prod
-          echo "APP_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-$(echo ${{ github.sha }} | cut -c1-7)" >> .env.prod
+          IMAGE_LC=$(echo "${{ env.IMAGE_NAME }}" | tr '[:upper:]' '[:lower:]')
+          echo "APP_IMAGE=${{ env.REGISTRY }}/${IMAGE_LC}:sha-$(echo ${{ github.sha }} | cut -c1-7)" >> .env.prod
 
       - name: Subir stack PRODUCAO
         run: docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
