@@ -13,7 +13,7 @@ multi-ambiente** e **pipeline CI/CD** automatizado.
 
 | Nome | RM |
 |------|----|
-| _(preencher)_ | _(preencher)_ |
+| Gustavo Guimarães Borgo | RM560492 |
 
 ---
 

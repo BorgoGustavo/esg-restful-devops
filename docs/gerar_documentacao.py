@@ -22,12 +22,11 @@ OUTPUT = os.path.join(BASE_DIR, "documentacao.pdf")
 # Dados customizaveis pelo aluno (edite antes de gerar o PDF)
 # -----------------------------------------------------------------------------
 INTEGRANTES = [
-    # ("Nome Completo", "RM"),
-    ("Preencher Nome", "RM000000"),
+    ("Gustavo Guimaraes Borgo", "RM560492"),
 ]
 DISCIPLINA = "Navegando pelo mundo DevOps - FIAP"
 PROJETO = "Cidades ESG Inteligentes"
-REPO_URL = "https://github.com/<seu-usuario>/esg-restful"
+REPO_URL = "https://github.com/BorgoGustavo/esg-restful-devops"
 
 
 def _latin1(text: str) -> str:

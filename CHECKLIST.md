@@ -1,5 +1,9 @@
 # Checklist de Entrega — Desafio DevOps (Cidades ESG Inteligentes)
 
+**Integrante:** Gustavo Guimarães Borgo — RM560492
+**Repositório:** https://github.com/BorgoGustavo/esg-restful-devops
+
+
 | # | Item | Status | Onde encontrar |
 |---|------|--------|----------------|
 | 1 | Projeto compactado em `.ZIP` com estrutura organizada | ✅ | `esg-restful-devops.zip` (raiz da entrega) |
