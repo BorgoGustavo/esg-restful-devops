@@ -212,7 +212,7 @@ na documentação técnica (`docs/documentacao.pdf`).
 |---|-----------|---------|
 | 1 | CI verde (build + testes)                                        | `docs/prints/01-ci-green.png`     |
 | 2 | CD verde (docker + deploy staging + deploy prod)                 | `docs/prints/02-cd-green.png`     |
-| 2b| Gate de aprovação manual de `production`                         | `docs/prints/02b-cd-gate.png`     |
+| 2b| CD completo pós-aprovação (job `Deploy PRODUCAO` verde)          | `docs/prints/02b-cd-prod-green.png` |
 | 3 | Imagem publicada no GHCR                                         | `docs/prints/03-ghcr.png`         |
 | 4 | Logs do job `Deploy STAGING` (containers Healthy/Started)        | `docs/prints/04-staging-logs.png` |
 | 5 | Logs do job `Deploy PRODUCAO` (porta 8090, pós-aprovação)        | `docs/prints/05-prod-logs.png`    |

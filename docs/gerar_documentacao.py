@@ -234,8 +234,8 @@ def gerar():
                      "Execucao verde do workflow CI (build-test + package).")
     pdf.imagem_print("02-cd-green.png",
                      "Execucao verde do workflow CD (docker + deploy staging + deploy prod).")
-    pdf.imagem_print("02b-cd-gate.png",
-                     "Gate de aprovacao manual do environment 'production' antes do deploy.")
+    pdf.imagem_print("02b-cd-prod-green.png",
+                     "Workflow CD apos aprovacao manual: job Deploy PRODUCAO tambem verde.")
     pdf.imagem_print("07-environments.png",
                      "Aba Environments do GitHub: staging sem gate, production com aprovacao manual.")
 
